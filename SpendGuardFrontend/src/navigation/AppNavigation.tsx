@@ -1,26 +1,28 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation, type NavigationProp } from '@react-navigation/native';
 import LoginScreen from '../screens/login/LoginScreen';
-import { NavigationPaths } from '../config/NavigationPaths';
 import SplashScreen from '../screens/splash/SplashScreen';
+import BottomTabNavigation from './BottomTabNavigation';
 import GlobalQueryClient from '../utils/globalQueryClient';
-import { useNavigation } from '@react-navigation/native';
 import { QueryClientProvider } from '@tanstack/react-query';
+import type { AppStackParamList } from './types/navigation';
 
 const AppNavigation = () => {
-    const Stack = createStackNavigator();
-    const navigation: any = useNavigation();
-    const queryClient = GlobalQueryClient(navigation);
+    const Stack = createStackNavigator<AppStackParamList>();
+    const navigation = useNavigation<NavigationProp<AppStackParamList>>();
+    const queryClient = GlobalQueryClient({ navigation });
     return (
         <QueryClientProvider client={queryClient}>
             <Stack.Navigator
-                initialRouteName={NavigationPaths.SPLASH_SCREEN}
+                initialRouteName="SplashScreen"
                 screenOptions={{
                     headerShown: false
                 }}
             >
-                <Stack.Screen name={NavigationPaths.SPLASH_SCREEN} component={SplashScreen} />
-                <Stack.Screen name={NavigationPaths.LOGIN_PAGE} component={LoginScreen} />
+                <Stack.Screen name="SplashScreen" component={SplashScreen} />
+                <Stack.Screen name="LoginPage" component={LoginScreen} />
+                <Stack.Screen name="BottomTabStack" component={BottomTabNavigation} />
             </Stack.Navigator>
         </QueryClientProvider>
     )

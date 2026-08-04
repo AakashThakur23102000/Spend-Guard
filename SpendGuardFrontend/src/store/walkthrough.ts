@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const WalkthroughSlice = createSlice({
     name: "walkthrough",
     initialState: {
-        isFirstTime: false,
+        isFirstTime: true,
     },
     reducers: {
         updateWalkthrough: (state, action) => {
