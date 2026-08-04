@@ -48,14 +48,14 @@ const SplashScreen = () => {
         logoScale.value = withRepeat(
             withSequence(
                 withTiming(1.3, {
-                    duration: 1000,
+                    duration: 500,
                     easing: Easing.inOut(Easing.ease),
                 }),
 
                 withTiming(
                     1,
                     {
-                        duration: 1000,
+                        duration: 500,
                         easing: Easing.inOut(Easing.ease),
                     },
                     (finished) => {

@@ -1,12 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import themeReducer from "./themeSlice"
+import themeReducer from "./themeSlice";
+import walkthroughReducer from "./walkthrough";
+
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
 const persistConfig = {
     storage: AsyncStorage,
 }
 const rootReducer = combineReducers({
     theme: persistReducer({ ...persistConfig, key: "theme" }, themeReducer),
+    walkthrough: walkthroughReducer
 })
 
 export const store = configureStore({
