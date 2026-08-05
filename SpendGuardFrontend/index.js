@@ -8,6 +8,7 @@ import { name as appName } from './app.json';
 import { store, persistor } from './src/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 if (__DEV__) {
     require("./ReactotronConfig");
@@ -15,11 +16,13 @@ if (__DEV__) {
 
 function AppMain() {
     return (
-        <Provider store={store}>
-            <PersistGate persistor={persistor}>
+        <GestureHandlerRootView>
+            <Provider store={store}>
+                <PersistGate persistor={persistor}>
                     <App />
-            </PersistGate>
-        </Provider>
+                </PersistGate>
+            </Provider>
+        </GestureHandlerRootView>
     )
 }
 

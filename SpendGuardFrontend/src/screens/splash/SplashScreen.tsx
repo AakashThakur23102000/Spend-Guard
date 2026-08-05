@@ -13,10 +13,15 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 import { runOnJS } from 'react-native-worklets';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { AppStackParamList } from '../../navigation/types/navigation';
+import ScreenContainer from '../../components/ScreenContainer';
 
 const SplashScreen = () => {
-    const COLORS = useAppSelector((state) => state.theme.colors);
+    const walkthrough = useAppSelector((state) => state.walkthrough.isFirstTime)
+    const navigation = useNavigation<NavigationProp<AppStackParamList>>();
 
+    // animations
     const logoScale = useSharedValue(1);
     const isAllTaskCompleted = useSharedValue(false);
     const animatedStyle = useAnimatedStyle(() => ({
@@ -26,23 +31,22 @@ const SplashScreen = () => {
     const styles = ScaledSheet.create({
         screen: {
             flex: 1,
-            backgroundColor: COLORS.background1,
             justifyContent: 'center',
             alignItems: 'center',
         },
     })
 
     const callOnAnimationComplete = () => {
-        // Animation End
-        console.log('-------------------------Navigated-------------------------------------');
-        // navigation.replace(...)
+        if (walkthrough) {
+            navigation.navigate("Walkthrough")
+        }
     };
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            console.log('✅ All startup tasks completed');
+        // check if first time or not
+        if (walkthrough) {
             isAllTaskCompleted.value = true;
-        }, 5000);
+        }
 
         // Animation Start
         logoScale.value = withRepeat(
@@ -72,33 +76,34 @@ const SplashScreen = () => {
             false
         );
         return () => {
-            clearTimeout(timer);
             cancelAnimation(logoScale);
         };
     }, []);
 
 
     return (
-        <View style={styles.screen}>
-            <Animated.View
-                style={[
-                    {
-                        width: scale(150),
-                        height: scale(150),
-                    },
-                    animatedStyle,
-                ]}
-            >
-                <Image
-                    source={ImageSource.APP_LOGO}
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain',
-                    }}
-                />
-            </Animated.View>
-        </View>
+        <ScreenContainer>
+            <View style={styles.screen}>
+                <Animated.View
+                    style={[
+                        {
+                            width: scale(150),
+                            height: scale(150),
+                        },
+                        animatedStyle,
+                    ]}
+                >
+                    <Image
+                        source={ImageSource.APP_LOGO}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            resizeMode: 'contain',
+                        }}
+                    />
+                </Animated.View>
+            </View>
+        </ScreenContainer>
     );
 };
 

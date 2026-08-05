@@ -7,6 +7,7 @@ import BottomTabNavigation from './BottomTabNavigation';
 import GlobalQueryClient from '../utils/globalQueryClient';
 import { QueryClientProvider } from '@tanstack/react-query';
 import type { AppStackParamList } from './types/navigation';
+import WalkthroughScreen from '../screens/walkthrough/WalkthroughScreen';
 
 const AppNavigation = () => {
     const Stack = createStackNavigator<AppStackParamList>();
@@ -21,6 +22,7 @@ const AppNavigation = () => {
                 }}
             >
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
+                <Stack.Screen name="Walkthrough" component={WalkthroughScreen} />
                 <Stack.Screen name="LoginPage" component={LoginScreen} />
                 <Stack.Screen name="BottomTabStack" component={BottomTabNavigation} />
             </Stack.Navigator>
