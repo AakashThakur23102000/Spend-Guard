@@ -1,5 +1,5 @@
 const FONT_FAMILIES = {
-    WixMadeforText: 'WixMadeforText',
+    GoogleSans: 'GoogleSans',
 };
 const FONT_WEIGHT_SUFFIX = {
     '100': 'Thin',

@@ -13,7 +13,7 @@ const Text = ({ style, children, ...props }: TextProps) => {
       style={[
         {
           color: colors.textColor,
-          fontFamily: fontFamily.WixMadeforText.normal,
+          fontFamily: fontFamily.GoogleSans.normal,
           fontSize: fontSize.regular
         },
         style,

@@ -9,8 +9,11 @@ export type ThemeColorsType = {
 
     cardColor: string;
 
+    // Button
     btnColor: string;
     btnText: string;
+    btnDisabledColor: string;
+    btnDisabledText: string;
 
     textColor: string;
     textColor2: string;
@@ -19,7 +22,17 @@ export type ThemeColorsType = {
     inputField: string;
     inputBorderDefault: string;
     inputBorderFocused: string;
-    inputBorderError: string
+    inputBorderError: string;
+
+
+    paginationActiveColor: string;
+    paginationInactiveColor: string;
+
+    switchTrackActive: string;
+    switchTrackInactive: string;
+    switchThumbActive: string;
+    switchThumbInactive: string;
+
 };
 
 const lightThemeColors: ThemeColorsType = {
@@ -30,6 +43,8 @@ const lightThemeColors: ThemeColorsType = {
 
     btnColor: "#1c84ee",
     btnText: "white",
+    btnDisabledColor: "#BFC8D4",
+    btnDisabledText: "#FFFFFF",
 
     textColor: "#5d7186",
     textColor2: "#313b5e",
@@ -39,7 +54,16 @@ const lightThemeColors: ThemeColorsType = {
     inputField: "#f8f8fa",
     inputBorderDefault: "#d8dfe7",
     inputBorderFocused: "#b0b0bb",
-    inputBorderError: "#ef5f5f"
+    inputBorderError: "#ef5f5f",
+
+    paginationActiveColor: "#1C84EE",
+    paginationInactiveColor: "#CDD6E0",
+
+    // Switch
+    switchTrackActive: "#FFB347",
+    switchTrackInactive: "#D9DEE5",
+    switchThumbActive: "#FFFFFF",
+    switchThumbInactive: "#FFFFFF",
 };
 
 const darkThemeColors: ThemeColorsType = {
@@ -49,7 +73,9 @@ const darkThemeColors: ThemeColorsType = {
     cardColor: "#282f36",
 
     btnColor: "#1c84ee",
-    btnText: "black",
+    btnText: "white",
+    btnDisabledColor: "#4A5563",
+    btnDisabledText: "#9AA5B1",
 
     textColor: "#aab8c5",
     textColor2: "#313b5e",
@@ -58,7 +84,17 @@ const darkThemeColors: ThemeColorsType = {
     inputField: "#22282e",
     inputBorderDefault: "#3a4551",
     inputBorderFocused: "#4a5663",
-    inputBorderError: "rgb(245.4, 159, 159)"
+    inputBorderError: "rgb(245.4, 159, 159)",
+
+    paginationActiveColor: "#4DA3FF",
+    paginationInactiveColor: "#4B5563",
+
+    // Switch
+    switchTrackActive: "#FFB347",
+    switchTrackInactive: "#46515D",
+    switchThumbActive: "#FFFFFF",
+    switchThumbInactive: "#FFFFFF",
+
 };
 
 const systemModeFromDevice = () =>

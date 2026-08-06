@@ -13,13 +13,14 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 import { runOnJS } from 'react-native-worklets';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { AppStackParamList } from '../../navigation/types/navigation';
 import ScreenContainer from '../../components/ScreenContainer';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const SplashScreen = () => {
     const walkthrough = useAppSelector((state) => state.walkthrough.isFirstTime)
-    const navigation = useNavigation<NavigationProp<AppStackParamList>>();
+    const navigation = useNavigation<StackNavigationProp<AppStackParamList>>();
 
     // animations
     const logoScale = useSharedValue(1);
@@ -28,17 +29,11 @@ const SplashScreen = () => {
         transform: [{ scale: logoScale.value }],
     }));
 
-    const styles = ScaledSheet.create({
-        screen: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-        },
-    })
-
     const callOnAnimationComplete = () => {
         if (walkthrough) {
-            navigation.navigate("Walkthrough")
+            navigation.replace("Walkthrough")
+        } else {
+            navigation.replace("LoginPage")
         }
     };
 
@@ -46,7 +41,12 @@ const SplashScreen = () => {
         // check if first time or not
         if (walkthrough) {
             isAllTaskCompleted.value = true;
+        } else {
+            setTimeout(() => {
+                isAllTaskCompleted.value = true;
+            }, 3000)
         }
+
 
         // Animation Start
         logoScale.value = withRepeat(
@@ -108,3 +108,11 @@ const SplashScreen = () => {
 };
 
 export default SplashScreen;
+
+const styles = ScaledSheet.create({
+    screen: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+})

@@ -1,6 +1,6 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation, type NavigationProp } from '@react-navigation/native';
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import LoginScreen from '../screens/login/LoginScreen';
 import SplashScreen from '../screens/splash/SplashScreen';
 import BottomTabNavigation from './BottomTabNavigation';
@@ -11,7 +11,7 @@ import WalkthroughScreen from '../screens/walkthrough/WalkthroughScreen';
 
 const AppNavigation = () => {
     const Stack = createStackNavigator<AppStackParamList>();
-    const navigation = useNavigation<NavigationProp<AppStackParamList>>();
+    const navigation = useNavigation<StackNavigationProp<AppStackParamList>>();
     const queryClient = GlobalQueryClient({ navigation });
     return (
         <QueryClientProvider client={queryClient}>

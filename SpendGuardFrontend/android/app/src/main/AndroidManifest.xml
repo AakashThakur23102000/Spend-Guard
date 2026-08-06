@@ -1,6 +1,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+  <!-- Internet -->
   <uses-permission android:name="android.permission.INTERNET" />
+  <!-- Network State -->
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <!-- SMS -->
+  <uses-permission android:name="android.permission.READ_SMS" />
+  <uses-permission android:name="android.permission.RECEIVE_SMS" />
+  <!-- Android 13+ Notifications -->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" android:minSdkVersion="33"/>
+  <!-- Restart listener after device reboot -->
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+  <!-- Foreground service -->
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <!-- Android 14+ -->
+  <uses-permission
+    android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+  <!-- Optional -->
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.VIBRATE" />
 
   <application
     android:enableOnBackInvokedCallback="false"

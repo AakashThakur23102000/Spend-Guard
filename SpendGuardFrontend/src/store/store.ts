@@ -9,7 +9,7 @@ const persistConfig = {
 }
 const rootReducer = combineReducers({
     theme: persistReducer({ ...persistConfig, key: "theme" }, themeReducer),
-    walkthrough: walkthroughReducer
+    walkthrough: persistReducer({ ...persistConfig, key: "walkthrough" }, walkthroughReducer)
 })
 
 export const store = configureStore({
