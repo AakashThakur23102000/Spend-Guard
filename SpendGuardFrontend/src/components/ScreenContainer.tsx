@@ -1,7 +1,7 @@
 import { View } from 'react-native'
 import React, { PropsWithChildren, useMemo } from 'react'
 import { useAppSelector } from '../hooks/storeHooks';
-import { scale, ScaledSheet, verticalScale } from 'react-native-size-matters';
+import { scale, ScaledSheet } from 'react-native-size-matters';
 
 const ScreenContainer = ({ children }: PropsWithChildren) => {
     const COLORS = useAppSelector((state) => state.theme.colors);
@@ -10,8 +10,7 @@ const ScreenContainer = ({ children }: PropsWithChildren) => {
             screen: {
                 flex: 1,
                 backgroundColor: COLORS.background1,
-                paddingVertical: verticalScale(2),
-                paddingHorizontal: scale(2)
+                paddingHorizontal: scale(8)
             },
         }),
         [COLORS]

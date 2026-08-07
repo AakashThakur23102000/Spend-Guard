@@ -15,12 +15,15 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../../navigation/types/navigation';
 import { useNavigation } from '@react-navigation/native';
 
-const LoginScreen = () => {
+const SignUpScreen = () => {
     const COLORS = useAppSelector(state => state.theme.colors);
+    const navigation = useNavigation<StackNavigationProp<AppStackParamList>>()
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigation = useNavigation<StackNavigationProp<AppStackParamList>>()
+    const [confirmPassword, setConfirmPassword] = useState('');
+
     const styles = useMemo(
         () =>
             ScaledSheet.create({
@@ -55,13 +58,7 @@ const LoginScreen = () => {
                     rowGap: verticalScale(5),
                 },
 
-                forgotPassword: {
-                    alignSelf: 'flex-end',
-                    marginTop: verticalScale(2),
-                    color: COLORS.btnColor,
-                },
-
-                loginButton: {
+                signUpButton: {
                     width: '100%',
                     marginTop: verticalScale(10),
                 },
@@ -106,7 +103,7 @@ const LoginScreen = () => {
                     color: COLORS.textColor,
                 },
 
-                signUpText: {
+                loginText: {
                     color: COLORS.btnColor,
                     fontFamily: fontFamily.GoogleSans.bold,
                 },
@@ -131,16 +128,28 @@ const LoginScreen = () => {
                     </View>
 
                     <Text style={styles.appName}>
-                        SpendGuard
+                        Create Account
                     </Text>
 
                     <Text style={styles.tagline}>
-                        Track spend. Avoid surprises.
+                        Join SpendGuard and take control of your spending.
                     </Text>
                 </View>
 
-                {/* Login Form */}
+                {/* Sign Up Form */}
                 <View style={styles.form}>
+                    <CustomInput
+                        label="Name"
+                        placeholder="Your full name"
+                        value={name}
+                        onChangeText={setName}
+                        autoCapitalize="words"
+                        textContentType="name"
+                        autoComplete="name"
+                        leftIconLibrary="MaterialCommunityIcons"
+                        leftIconName="account-outline"
+                    />
+
                     <CustomInput
                         label="Email"
                         placeholder="name@email.com"
@@ -157,25 +166,31 @@ const LoginScreen = () => {
 
                     <CustomInput
                         label="Password"
-                        placeholder="••••••••"
+                        placeholder="Create a password"
                         value={password}
                         onChangeText={setPassword}
                         secureTextEntry
-                        autoComplete="current-password"
-                        textContentType="password"
+                        autoComplete="new-password"
+                        textContentType="newPassword"
                         leftIconLibrary="MaterialCommunityIcons"
                         leftIconName="lock-outline"
                     />
 
-                    <Pressable>
-                        <Text style={styles.forgotPassword}>
-                            Forgot Password?
-                        </Text>
-                    </Pressable>
+                    <CustomInput
+                        label="Confirm Password"
+                        placeholder="Re-enter your password"
+                        value={confirmPassword}
+                        onChangeText={setConfirmPassword}
+                        secureTextEntry
+                        autoComplete="new-password"
+                        textContentType="newPassword"
+                        leftIconLibrary="MaterialCommunityIcons"
+                        leftIconName="lock-check-outline"
+                    />
 
                     <CustomButton
-                        title="Login"
-                        buttonStyle={styles.loginButton}
+                        title="Create Account"
+                        buttonStyle={styles.signUpButton}
                     />
                 </View>
 
@@ -190,7 +205,7 @@ const LoginScreen = () => {
                     <View style={styles.divider} />
                 </View>
 
-                {/* Google Login */}
+                {/* Google Sign Up */}
                 <CustomButton
                     title="Continue with Google"
                     iconLibrary="AntDesign"
@@ -204,12 +219,12 @@ const LoginScreen = () => {
                 {/* Footer */}
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>
-                        Don't have an account?
+                        Already have an account?
                     </Text>
 
-                    <Pressable onPress={() => { navigation.navigate("SignUpPage") }}>
-                        <Text style={styles.signUpText}>
-                            {' '}Sign Up
+                    <Pressable>
+                        <Text style={styles.loginText} onPress={() => navigation.navigate("LoginPage")}>
+                            {' '}Login
                         </Text>
                     </Pressable>
                 </View>
@@ -218,4 +233,4 @@ const LoginScreen = () => {
     );
 };
 
-export default LoginScreen;
+export default SignUpScreen;

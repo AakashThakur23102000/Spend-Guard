@@ -14,7 +14,8 @@ const Text = ({ style, children, ...props }: TextProps) => {
         {
           color: colors.textColor,
           fontFamily: fontFamily.GoogleSans.normal,
-          fontSize: fontSize.regular
+          fontSize: fontSize.regular,
+          includeFontPadding: false,
         },
         style,
       ]}

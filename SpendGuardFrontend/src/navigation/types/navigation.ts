@@ -3,6 +3,7 @@ import type { NavigatorScreenParams } from '@react-navigation/native';
 export type AppStackParamList = {
     SplashScreen: undefined;
     LoginPage: undefined;
+    SignUpPage: undefined;
     Walkthrough: undefined;
     BottomTabStack: NavigatorScreenParams<BottomTabParamList>;
 };

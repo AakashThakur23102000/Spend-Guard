@@ -47,6 +47,7 @@ const WalkthroughScreen = () => {
                 subtitle: {
                     fontSize: fontSize.regular,
                     color: COLORS.textColor,
+                    paddingTop: verticalScale(20)
                 },
 
                 bottomSection: {
@@ -176,7 +177,7 @@ const WalkthroughScreen = () => {
     useEffect(() => {
         checkPermissions();
     }, []);
-    
+
     return (
         <ScreenContainer>
             <View style={style.screen}>
@@ -209,7 +210,8 @@ const WalkthroughScreen = () => {
                                     {data.item.id === 2 && (
                                         <View
                                             style={{
-                                                rowGap: verticalScale(5),
+                                                rowGap: verticalScale(10),
+                                                paddingTop: verticalScale(10)
                                             }}
                                         >
                                             {/* Read SMS */}
@@ -319,7 +321,7 @@ const WalkthroughScreen = () => {
                     onSnapToItem={(index) => {
                         setCurrentIndex(index);
                     }}
-                // scrollEnabled={false}
+                    scrollEnabled={false}
                 />
                 <View style={style.bottomSection}>
                     <Pagination
